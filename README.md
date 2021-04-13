@@ -40,7 +40,7 @@ The pre-commit git hooks have exactly the same checks as [CircleCI](https://circ
 
 **Repository:** Single source of data. Responsible to get data from one or more data sources
 
-<img src="https://raw.githubusercontent.com/adessoTurkey/android-sample-app/develop/images/architecture-diagram.png" width="500" />
+<img src="https://github.com/aligkts/FlowerBox/blob/master/images/architecture-diagram.png" width="500" />
 
 ## Tech Stack
 

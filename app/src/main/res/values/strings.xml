@@ -19,7 +19,7 @@
     <!-- endregion -->
 
     <!-- region Product List -->
-
+    <string name="strike_text"><strike>%s</strike></string>
     <!-- endregion -->
 
     <!-- region Tv Show Detail -->

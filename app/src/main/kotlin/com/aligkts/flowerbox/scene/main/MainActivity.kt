@@ -9,8 +9,9 @@ import androidx.navigation.findNavController
 import com.aligkts.flowerbox.R
 import com.aligkts.flowerbox.base.BaseBindingActivity
 import com.aligkts.flowerbox.databinding.ActivityMainBinding
+import com.aligkts.flowerbox.internal.extension.gone
 import com.aligkts.flowerbox.internal.extension.observeNonNull
-import com.aligkts.flowerbox.internal.extension.showPopup
+import com.aligkts.flowerbox.internal.extension.show
 import com.aligkts.flowerbox.navigation.NavigationCommand
 
 class MainActivity : BaseBindingActivity<MainViewModel, ActivityMainBinding>() {
@@ -26,9 +27,11 @@ class MainActivity : BaseBindingActivity<MainViewModel, ActivityMainBinding>() {
         observeNavigation()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp()
-    }
+    override fun onSupportNavigateUp() = navController.navigateUp()
+
+    fun showLoading() = binder.loadingProgress.show()
+
+    fun dismissLoading() = binder.loadingProgress.gone()
 
     private fun observeNavigation() {
         viewModel.navigation.observeNonNull(this) {
@@ -42,13 +45,8 @@ class MainActivity : BaseBindingActivity<MainViewModel, ActivityMainBinding>() {
         when (command) {
             is NavigationCommand.ToDirection -> navController.navigate(command.directions)
             is NavigationCommand.ToDeepLink -> navController.navigate(command.deepLink.toUri())
-            is NavigationCommand.Popup -> showPopup(command.model, command.callback)
             is NavigationCommand.Back -> navController.navigateUp()
         }
-    }
-
-    private fun shouldHideBottomNav(args: Bundle?): Boolean {
-        return args?.getBoolean(getString(R.string.arg_hide_bottom_nav)) == true
     }
 
     companion object {

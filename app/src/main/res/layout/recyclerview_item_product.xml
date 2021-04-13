@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="product"
+            type="com.aligkts.flowerbox.uimodel.ProductItemUiModel" />
+
+        <variable
+            name="callback"
+            type="com.aligkts.flowerbox.scene.product.ProductCallback" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:onClick="@{() -> callback.onProductClick(product)}"
+        app:cardCornerRadius="@dimen/radius_small"
+        app:cardElevation="@dimen/elevation_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_product"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:scaleType="fitXY"
+                app:imageFromUrl="@{product.imagePath}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="@string/aspect_ratio_height_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_title"
+                style="@style/TextField.ListItem.Product.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{product.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_product"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Kek ve Kurabiye Buketi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_badge"
+                style="@style/TextField.ListItem.Product.Badge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{product.badgeText}"
+                android:textColor="@{ContextCompat.getColor(context, product.badgeTextColorRes)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_product"
+                app:layout_constraintTop_toBottomOf="@id/txt_title"
+                tools:text="Her Gün Aynı Gün / Ücretsiz Teslimat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_old_price"
+                style="@style/TextField.ListItem.Product.OldPrice"
+                visibleIf="@{product.oldPrice != 0.0}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(product.oldPrice)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_product"
+                app:layout_constraintTop_toBottomOf="@id/txt_badge"
+                app:strikethrough="@{true}"
+                tools:text="64.99" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_current_price"
+                style="@style/TextField.ListItem.Product.CurrentPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{product.currentPrice}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txt_old_price"
+                app:layout_constraintTop_toBottomOf="@id/txt_badge"
+                tools:text="64.99" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

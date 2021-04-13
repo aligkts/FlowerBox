@@ -20,7 +20,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.aligkts.flowerbox.BR
 import com.aligkts.flowerbox.internal.extension.observeNonNull
-import com.aligkts.flowerbox.internal.extension.showPopup
 import com.aligkts.flowerbox.internal.util.functional.lazyThreadSafetyNone
 import com.aligkts.flowerbox.navigation.NavigationCommand
 import com.aligkts.flowerbox.scene.main.MainActivity
@@ -123,19 +122,14 @@ abstract class BaseBottomSheetDialogFragment<VM : BaseAndroidViewModel, B : View
                     ?.navController
                     ?.navigate(command.deepLink.toUri(), null, getExtras())
             }
-            is NavigationCommand.Popup -> {
-                with(command) {
-                    context?.showPopup(model, callback)
-                }
-            }
             is NavigationCommand.Back -> findNavController().navigateUp()
         }
     }
 
     private fun observeFailure() {
         viewModel.failurePopup.observeNonNull(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { popupUiModel ->
-                context?.showPopup(popupUiModel)
+            it.getContentIfNotHandled()?.let { errorUiModel ->
+                showSnackBarMessage(errorUiModel.message)
             }
         }
     }

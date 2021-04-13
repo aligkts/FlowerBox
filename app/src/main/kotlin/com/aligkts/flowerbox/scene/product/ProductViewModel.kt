@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.aligkts.flowerbox.base.BaseAndroidViewModel
 import com.aligkts.flowerbox.domain.FetchProductListUseCase
 import com.aligkts.flowerbox.internal.util.UseCase
-import com.aligkts.flowerbox.uimodel.ProductListUiModel
+import com.aligkts.flowerbox.uimodel.ProductItemUiModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
@@ -19,23 +19,25 @@ class ProductViewModel @Inject constructor(
     application: Application
 ) : BaseAndroidViewModel(application) {
 
-    private val _products = MutableLiveData<ProductListUiModel>()
-    val products: LiveData<ProductListUiModel> get() = _products
+    private val _products = MutableLiveData<List<ProductItemUiModel>>()
+    val products: LiveData<List<ProductItemUiModel>> get() = _products
 
     init {
         fetchProductList()
     }
 
     private fun fetchProductList() {
+        showLoading()
         bgScope.launch {
             val productListResult = fetchProductListUseCase.run(UseCase.None)
             onUIThread {
+                dismissLoading()
                 productListResult.either(::handleFailure, ::postProductList)
             }
         }
     }
 
-    private fun postProductList(products: ProductListUiModel) {
+    private fun postProductList(products: List<ProductItemUiModel>) {
         _products.value = products
     }
 }

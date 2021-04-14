@@ -6,7 +6,7 @@ data class DynamicFilterResponseModel(
     @Json(name = "clearLink")
     val clearLink: String?,
     @Json(name = "detailId")
-    val detailId: Int,
+    val detailId: Long,
     @Json(name = "dropdownInfo")
     val dropdownInfo: String?,
     @Json(name = "dropdownTitle")
@@ -16,7 +16,7 @@ data class DynamicFilterResponseModel(
     @Json(name = "filterType")
     val filterType: Int,
     @Json(name = "id")
-    val id: Int,
+    val id: Long,
     @Json(name = "isMainCategory")
     val isMainCategory: Boolean,
     @Json(name = "isReload")

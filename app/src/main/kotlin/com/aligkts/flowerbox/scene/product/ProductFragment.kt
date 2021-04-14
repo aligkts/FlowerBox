@@ -17,6 +17,9 @@ class ProductFragment : BaseFragment<ProductViewModel, FragmentProductBinding>()
     override fun initialize() {
         super.initialize()
         binder.productAdapter = ProductAdapter(this)
+        binder.txtFilter.setOnClickListener {
+            viewModel.onFilterClick()
+        }
     }
 
     override fun onProductClick(product: ProductItemUiModel) {

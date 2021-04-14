@@ -18,9 +18,9 @@ data class ProductResponseModel(
     @Json(name = "deliveryChargeText")
     val deliveryChargeText: String?,
     @Json(name = "entryId")
-    val entryId: Int,
+    val entryId: Long,
     @Json(name = "id")
-    val id: Int,
+    val id: Long,
     @Json(name = "image")
     val image: String,
     @Json(name = "information")

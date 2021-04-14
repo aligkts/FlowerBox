@@ -66,118 +66,32 @@
 
     <style name="TextField.ListItem" />
 
-    <style name="CollapsingToolbar" />
-
-    <style name="TextField.ShowCollapsingToolbar" parent="TextField.White" />
-
-    <style name="TextField.ShowCollapsingToolbar.Expanded">
-        <item name="android:textAppearance">@style/TextField.Header4</item>
+    <style name="TextField.ListItem.Product">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginStart">@dimen/margin_product_text</item>
+        <item name="android:layout_marginEnd">@dimen/margin_product_text</item>
+        <item name="android:layout_marginTop">@dimen/margin_product_text</item>
     </style>
 
-    <style name="TextField.ShowCollapsingToolbar.Collapsed">
-        <item name="android:textSize">17sp</item>
+    <style name="TextField.ListItem.Product.Title">
+        <item name="android:textAppearance">@style/TextField.Subtitle1</item>
     </style>
 
-    <style name="CollapsingToolbar.Show">
-        <item name="expandedTitleTextAppearance">@style/TextField.ShowCollapsingToolbar.Expanded
-        </item>
-        <item name="expandedTitleGravity">top</item>
-        <item name="collapsedTitleGravity">center</item>
-        <item name="collapsedTitleTextAppearance">@style/TextField.ShowCollapsingToolbar.Collapsed
-        </item>
-        <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
-        <item name="android:background">@drawable/background_main_tab_app_bar</item>
-    </style>
-
-    <style name="TextField.ShowDetail">
-        <item name="android:layout_marginStart">@dimen/margin_xxl</item>
-        <item name="android:layout_marginEnd">@dimen/margin_xxl</item>
-    </style>
-
-    <style name="TextField.ShowDetail.Title">
-        <item name="android:layout_marginTop">@dimen/margin_small</item>
-        <item name="android:textAppearance">@style/TextField.Header5</item>
-    </style>
-
-    <style name="TextField.ShowDetail.Genre">
+    <style name="TextField.ListItem.Product.Badge">
         <item name="android:layout_marginTop">@dimen/margin_small</item>
         <item name="android:textAppearance">@style/TextField.Body2</item>
     </style>
 
-    <style name="TextField.ShowDetail.Time">
+    <style name="TextField.ListItem.Product.OldPrice">
+        <item name="android:layout_marginTop">@dimen/margin_large</item>
         <item name="android:textAppearance">@style/TextField.Body2</item>
-        <item name="android:textColor">@color/almost_black_60</item>
-        <item name="android:drawablePadding">5dp</item>
-        <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:textColor">@color/dark_grey</item>
     </style>
 
-    <style name="TextField.ShowDetail.Overview">
-        <item name="android:textAppearance">@style/TextField.Body1</item>
+    <style name="TextField.ListItem.Product.CurrentPrice">
         <item name="android:layout_marginTop">@dimen/margin_large</item>
-        <item name="android:lineSpacingExtra">7sp</item>
-    </style>
-
-    <style name="TextField.ShowDetail.Season">
-        <item name="android:paddingStart">@dimen/padding_horizontal_chip</item>
-        <item name="android:paddingEnd">@dimen/padding_horizontal_chip</item>
-        <item name="android:paddingTop">@dimen/padding_vertical_chip</item>
-        <item name="android:paddingBottom">@dimen/padding_vertical_chip</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:background">@drawable/background_chip</item>
-        <item name="android:layout_marginTop">@dimen/margin_large</item>
-        <item name="android:backgroundTint">@color/charcoal_grey</item>
-    </style>
-
-    <style name="TextField.ShowDetail.PersonTitle">
-        <item name="android:textAppearance">@style/TextField.Body1</item>
-        <item name="android:layout_marginTop">28dp</item>
-    </style>
-
-    <style name="TextField.ShowDetail.Person">
-        <item name="android:textAppearance">@style/TextField.Body1</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:layout_marginStart">5dp</item>
-    </style>
-
-    <style name="CollapsingToolbar.Person">
-        <item name="collapsedTitleTextAppearance">
-            @style/TextField.PersonCollapsingToolbar.Collapsed
-        </item>
-        <item name="layout_scrollFlags">scroll|snap|exitUntilCollapsed</item>
-        <item name="contentScrim">@color/colorPrimary</item>
-        <item name="android:background">@color/white</item>
-    </style>
-
-    <style name="TextField.PersonTitle">
-        <item name="android:textAppearance">@style/TextField.Header5</item>
-        <item name="android:paddingStart">@dimen/margin_xxl</item>
-        <item name="android:paddingEnd">@dimen/margin_xxl</item>
-        <item name="android:paddingTop">@dimen/margin_large</item>
-    </style>
-
-    <style name="TextField.PersonCollapsingToolbar.Collapsed" parent="TextField.Body1">
-        <item name="android:lines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="TextField.PersonBio" parent="TextField.Body1">
-        <item name="android:lineSpacingExtra">7sp</item>
-    </style>
-
-    <style name="TextField.PersonBioToggle" parent="TextField.Body1">
-        <item name="android:textColor">@color/vibrant_blue</item>
-    </style>
-
-    <style name="TextField.MainTabTitle" parent="TextField.White">
-        <item name="android:textAppearance">@style/TextField.Header4</item>
-        <item name="android:paddingStart">@dimen/margin_xxl</item>
-        <item name="android:paddingTop">@dimen/margin_extra_large</item>
-        <item name="android:paddingEnd">@dimen/margin_xxl</item>
-        <item name="android:paddingBottom">@dimen/margin_extra_large</item>
+        <item name="android:textAppearance">@style/TextField.Body2</item>
     </style>
 
 </resources>

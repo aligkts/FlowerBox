@@ -5,9 +5,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
-import com.aligkts.flowerbox.internal.popup.Popup
-import com.aligkts.flowerbox.internal.popup.PopupCallback
-import com.aligkts.flowerbox.internal.popup.PopupUiModel
 
 val Context.connectivityManager
     get() = (this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
@@ -33,8 +30,4 @@ fun Context.isNetworkAvailable(): Boolean {
 
 fun Context?.toast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, duration).show()
-}
-
-fun Context.showPopup(uiModel: PopupUiModel, callback: PopupCallback? = null) {
-    Popup(this, uiModel, callback).show()
 }

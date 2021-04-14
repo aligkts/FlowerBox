@@ -31,4 +31,7 @@
     <dimen name="size_header_text">24sp</dimen>
     <dimen name="size_popup_text">16sp</dimen>
 
+    <!--  Product  -->
+    <dimen name="margin_product_text">10dp</dimen>
+
 </resources>

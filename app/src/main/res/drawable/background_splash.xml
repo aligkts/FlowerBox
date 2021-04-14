@@ -4,12 +4,7 @@
     <item android:drawable="@drawable/ic_splash_background" />
 
     <item
-        android:drawable="@drawable/ic_flower_box"
+        android:drawable="@drawable/ic_flower"
         android:gravity="center" />
-
-    <item
-        android:bottom="32dp"
-        android:drawable="@drawable/background_we_love"
-        android:gravity="bottom|center"/>
 
 </layer-list>

@@ -1,6 +1,8 @@
 package com.aligkts.flowerbox.data.remote.model.product
 
-import com.aligkts.flowerbox.uimodel.ProductListUiModel
+import com.aligkts.flowerbox.internal.extension.find
+import com.aligkts.flowerbox.uimodel.ProductItemUiModel
+import com.aligkts.flowerbox.uimodel.enum.DeliveryBadgeType
 import com.squareup.moshi.Json
 
 data class ProductListResponseModel(
@@ -10,7 +12,17 @@ data class ProductListResponseModel(
     val result: ResultResponseModel
 ) {
 
-    fun toUiModel() = ProductListUiModel(
-        products = result.data.products.toString()
-    )
+    fun toUiModel(): List<ProductItemUiModel> {
+        return result.data.products.map { item ->
+            ProductItemUiModel(
+                id = item.id,
+                imagePath = item.image,
+                title = item.name,
+                oldPrice = item.price.old,
+                currentPrice = item.price.current.toString(),
+                badgeText = item.deliveryBadgeText,
+                badgeTextColorRes = (DeliveryBadgeType::value.find(item.deliveryBadgeType) ?: DeliveryBadgeType.FREE_DELIVERY).color()
+            )
+        }
+    }
 }

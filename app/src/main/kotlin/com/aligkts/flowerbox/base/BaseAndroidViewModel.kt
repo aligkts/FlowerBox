@@ -6,14 +6,13 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.NavDirections
 import com.aligkts.flowerbox.R
-import com.aligkts.flowerbox.internal.popup.PopUpType
-import com.aligkts.flowerbox.internal.popup.PopupCallback
-import com.aligkts.flowerbox.internal.popup.PopupUiModel
 import com.aligkts.flowerbox.internal.util.Event
 import com.aligkts.flowerbox.internal.util.Failure
 import com.aligkts.flowerbox.navigation.NavigationCommand
+import com.aligkts.flowerbox.uimodel.ErrorUiModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -26,8 +25,8 @@ import kotlinx.coroutines.withContext
 @SuppressLint("StaticFieldLeak")
 abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _failurePopup = MutableLiveData<Event<PopupUiModel>>()
-    val failurePopup: LiveData<Event<PopupUiModel>> = _failurePopup
+    private val _failurePopup = MutableLiveData<Event<ErrorUiModel>>()
+    val failurePopup: LiveData<Event<ErrorUiModel>> = _failurePopup
 
     private val _success = MutableLiveData<Event<String>>()
     val success: LiveData<Event<String>> = _success
@@ -35,13 +34,16 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
     private val _navigation = MutableLiveData<Event<NavigationCommand>>()
     val navigation: LiveData<Event<NavigationCommand>> = _navigation
 
+    private var _loading = MutableLiveData<Boolean>()
+    var loading: LiveData<Boolean> = _loading.distinctUntilChanged()
+
     private val viewModelJob = SupervisorJob()
 
     protected val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     protected val bgScope = CoroutineScope(Dispatchers.Default + viewModelJob)
 
     protected open fun handleFailure(failure: Failure) {
-        val (title, message) = when (failure) {
+        val (message) = when (failure) {
             is Failure.NoConnectivityError -> Pair(
                 "",
                 getString(R.string.common_error_network_connection)
@@ -70,13 +72,15 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
             else -> Pair("", failure.message ?: failure.toString())
         }
 
-        _failurePopup.value = Event(
-            PopupUiModel(
-                title = title,
-                message = message,
-                popUpType = PopUpType.ERROR
-            )
-        )
+        _failurePopup.value = Event(ErrorUiModel(message = message))
+    }
+
+    protected fun showLoading() {
+        _loading.value = true
+    }
+
+    protected fun dismissLoading() {
+        _loading.value = false
     }
 
     protected fun showSnackBar(message: String) {
@@ -93,10 +97,6 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
 
     fun navigate(@StringRes deepLinkRes: Int) {
         navigate(getString(deepLinkRes))
-    }
-
-    fun navigate(model: PopupUiModel, callback: PopupCallback?) {
-        _navigation.value = Event(NavigationCommand.Popup(model, callback))
     }
 
     fun navigateBack() {

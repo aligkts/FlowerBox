@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aligkts.flowerbox.base.BaseAndroidViewModel
 import com.aligkts.flowerbox.domain.FetchFilterListUseCase
+import com.aligkts.flowerbox.internal.extension.replace
 import com.aligkts.flowerbox.internal.util.UseCase
 import com.aligkts.flowerbox.uimodel.FilterItemUiModel
 import javax.inject.Inject
@@ -38,5 +39,12 @@ class FilterBottomSheetViewModel @Inject constructor(
 
     private fun postFilterList(filters: List<FilterItemUiModel>) {
         _filters.value = filters
+    }
+
+    fun replaceFilteredItem(newItem: FilterItemUiModel) {
+        val newFilterList = _filters.value ?: emptyList()
+        val oldItem = newFilterList.find { it.id == newItem.id }
+        newFilterList.replace(old = oldItem, new = newItem)
+        postFilterList(newFilterList)
     }
 }

@@ -18,6 +18,7 @@ data class MainFilterResponseModel(
             FilterItemUiModel(
                 id = filterItem.detailId,
                 categoryName = filterItem.name,
+                isSingleChoice = filterItem.isMainCategory,
                 values = filterItem.values.map { valueItem ->
                     FilterValueItemUiModel(
                         id = valueItem.id,

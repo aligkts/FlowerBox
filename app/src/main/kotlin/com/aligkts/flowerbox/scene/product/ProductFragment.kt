@@ -4,6 +4,7 @@ import com.aligkts.flowerbox.R
 import com.aligkts.flowerbox.base.BaseFragment
 import com.aligkts.flowerbox.databinding.FragmentProductBinding
 import com.aligkts.flowerbox.internal.extension.toast
+import com.aligkts.flowerbox.scene.filter.FilterBottomSheetFragment
 import com.aligkts.flowerbox.uimodel.ProductItemUiModel
 
 /**
@@ -18,7 +19,7 @@ class ProductFragment : BaseFragment<ProductViewModel, FragmentProductBinding>()
         super.initialize()
         binder.productAdapter = ProductAdapter(this)
         binder.txtFilter.setOnClickListener {
-            viewModel.onFilterClick()
+            FilterBottomSheetFragment().show(childFragmentManager, FilterBottomSheetFragment.TAG)
         }
     }
 

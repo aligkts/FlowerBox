@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="androidx.recyclerview.widget.DividerItemDecoration" />
+
         <variable
             name="viewModel"
             type="com.aligkts.flowerbox.scene.filter.FilterBottomSheetViewModel" />
@@ -31,6 +33,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/button_apply_filter"
             app:layout_constraintTop_toTopOf="parent"
+            app:seperator="@{DividerItemDecoration.VERTICAL}"
             app:submitList="@{viewModel.filters}"
             tools:listitem="@layout/recyclerview_item_filter" />
 
@@ -39,8 +42,7 @@
             style="@style/Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_xxl"
-            android:layout_marginEnd="@dimen/margin_xxl"
+            android:layout_margin="@dimen/margin_xxl"
             android:text="@string/filter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

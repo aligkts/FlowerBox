@@ -8,6 +8,7 @@ import androidx.annotation.Dimension
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.aligkts.flowerbox.R
@@ -53,6 +54,11 @@ fun setAdapter(view: RecyclerView, adapter: BaseListAdapter<ViewDataBinding, Lis
     adapter?.let {
         view.adapter = it
     }
+}
+
+@BindingAdapter("seperator")
+fun setSeperator(view: RecyclerView, orientation: Int) {
+    view.addItemDecoration(DividerItemDecoration(view.context, orientation))
 }
 
 @BindingAdapter("spaceItemDecoration")

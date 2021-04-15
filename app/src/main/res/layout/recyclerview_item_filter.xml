@@ -8,11 +8,18 @@
         <variable
             name="filterItem"
             type="com.aligkts.flowerbox.uimodel.FilterItemUiModel" />
+
+        <variable
+            name="callback"
+            type="com.aligkts.flowerbox.scene.filter.FilterCallback" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> callback.onFilterClick(filterItem)}"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_category_name"

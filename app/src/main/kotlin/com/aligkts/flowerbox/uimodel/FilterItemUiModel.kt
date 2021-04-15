@@ -8,5 +8,7 @@ import com.aligkts.flowerbox.base.ListAdapterItem
 data class FilterItemUiModel(
     override val id: Long,
     val categoryName: String,
+    val isSingleChoice: Boolean,
+    var selectedValues: List<String> = arrayListOf(),
     val values: List<FilterValueItemUiModel>
 ) : ListAdapterItem

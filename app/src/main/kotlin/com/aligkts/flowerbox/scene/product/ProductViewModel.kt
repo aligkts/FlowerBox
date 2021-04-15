@@ -49,12 +49,4 @@ class ProductViewModel @Inject constructor(
     private fun postProductList(products: List<ProductItemUiModel>) {
         _products.value = products
     }
-
-    fun onFilterClick() {
-        navigateToFilterFragment()
-    }
-
-    private fun navigateToFilterFragment() {
-        navigate(ProductFragmentDirections.toFilter())
-    }
 }

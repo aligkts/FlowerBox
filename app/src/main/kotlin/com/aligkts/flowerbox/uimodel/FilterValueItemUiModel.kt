@@ -9,5 +9,6 @@ import com.aligkts.flowerbox.uimodel.enum.FilterGroupType
 data class FilterValueItemUiModel(
     override val id: Long,
     val name: String,
-    val group: FilterGroupType
+    val group: FilterGroupType,
+    var isSelected: Boolean = false
 ) : ListAdapterItem

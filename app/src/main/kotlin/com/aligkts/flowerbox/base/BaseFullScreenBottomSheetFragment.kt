@@ -27,7 +27,7 @@ abstract class BaseFullScreenBottomSheetFragment<VM : BaseAndroidViewModel, B : 
                 setupFullHeight(bottomSheetDialog)
                 BottomSheetBehavior.from(bottomSheet).apply {
                     state = BottomSheetBehavior.STATE_EXPANDED
-                    setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                    addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                         override fun onStateChanged(bottomSheet: View, newState: Int) {
                             if (newState == BottomSheetBehavior.STATE_DRAGGING) {
                                 state = BottomSheetBehavior.STATE_EXPANDED

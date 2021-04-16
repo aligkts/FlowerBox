@@ -5,7 +5,6 @@ import com.aligkts.flowerbox.base.BaseFullScreenBottomSheetFragment
 import com.aligkts.flowerbox.databinding.FragmentFilterBottomSheetBinding
 import com.aligkts.flowerbox.internal.extension.showMultipleChoiceDialog
 import com.aligkts.flowerbox.internal.extension.showSingleChoiceDialog
-import com.aligkts.flowerbox.internal.extension.toast
 import com.aligkts.flowerbox.uimodel.FilterItemUiModel
 import com.aligkts.flowerbox.uimodel.FilterValueItemUiModel
 
@@ -15,6 +14,8 @@ import com.aligkts.flowerbox.uimodel.FilterValueItemUiModel
 class FilterBottomSheetFragment :
     BaseFullScreenBottomSheetFragment<FilterBottomSheetViewModel, FragmentFilterBottomSheetBinding>(),
     FilterCallback {
+
+    private var onFilterSelectionCompleted: ((List<FilterValueItemUiModel>) -> Unit)? = null
 
     override val layoutId: Int = R.layout.fragment_filter_bottom_sheet
 
@@ -29,10 +30,9 @@ class FilterBottomSheetFragment :
                     selectedFilters.add(selected)
                 }
             }
-            if (selectedFilters.isEmpty()) {
-                dismiss()
-            } else {
-                toast(selectedFilters.toString())
+            dismiss()
+            if (selectedFilters.isNotEmpty()) {
+                onFilterSelectionCompleted?.let { it.invoke(selectedFilters) }
             }
         }
     }
@@ -76,5 +76,11 @@ class FilterBottomSheetFragment :
 
     companion object {
         const val TAG = "FilterBottomSheetFragment"
+
+        fun newInstance(onFilterSelectionCompleted: ((List<FilterValueItemUiModel>) -> Unit)?): FilterBottomSheetFragment {
+            val fragment = FilterBottomSheetFragment()
+            fragment.onFilterSelectionCompleted = onFilterSelectionCompleted
+            return fragment
+        }
     }
 }

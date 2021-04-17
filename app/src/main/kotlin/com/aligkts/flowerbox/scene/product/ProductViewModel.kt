@@ -9,7 +9,7 @@ import com.aligkts.flowerbox.domain.FetchProductListUseCase
 import com.aligkts.flowerbox.internal.extension.getFilterRequestQuery
 import com.aligkts.flowerbox.internal.util.Failure
 import com.aligkts.flowerbox.internal.util.UseCase
-import com.aligkts.flowerbox.uimodel.FilterValueItemUiModel
+import com.aligkts.flowerbox.uimodel.FilterItemUiModel
 import com.aligkts.flowerbox.uimodel.ProductItemUiModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -30,6 +30,8 @@ class ProductViewModel @Inject constructor(
     private val _products = MutableLiveData<List<ProductItemUiModel>>()
     val products: LiveData<List<ProductItemUiModel>> get() = _products
 
+    var filterSelectionList: List<FilterItemUiModel>? = null
+
     init {
         fetchProductList()
     }
@@ -45,7 +47,8 @@ class ProductViewModel @Inject constructor(
         }
     }
 
-    fun fetchFilteredProductList(filterSelectionList: List<FilterValueItemUiModel>) {
+    fun fetchFilteredProductList(filterSelectionList: List<FilterItemUiModel>) {
+        this.filterSelectionList = filterSelectionList
         showLoading()
         bgScope.launch {
             val filteredProductListResult =

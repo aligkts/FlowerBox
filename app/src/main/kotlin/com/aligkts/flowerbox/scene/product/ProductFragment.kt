@@ -19,7 +19,7 @@ class ProductFragment : BaseFragment<ProductViewModel, FragmentProductBinding>()
         super.initialize()
         binder.productAdapter = ProductAdapter(this)
         binder.txtFilter.setOnClickListener {
-            FilterBottomSheetFragment.newInstance { selections ->
+            FilterBottomSheetFragment.newInstance(viewModel.filterSelectionList) { selections ->
                 viewModel.fetchFilteredProductList(filterSelectionList = selections)
             }.show(childFragmentManager, FilterBottomSheetFragment.TAG)
         }

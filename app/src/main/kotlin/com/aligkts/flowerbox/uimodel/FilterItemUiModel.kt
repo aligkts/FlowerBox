@@ -9,6 +9,6 @@ data class FilterItemUiModel(
     override val id: Long,
     val categoryName: String,
     val isSingleChoice: Boolean,
-    var selectedValues: List<String> = arrayListOf(),
-    val values: List<FilterValueItemUiModel>
+    var selectedValues: MutableList<String> = mutableListOf(),
+    var values: List<FilterValueItemUiModel>
 ) : ListAdapterItem

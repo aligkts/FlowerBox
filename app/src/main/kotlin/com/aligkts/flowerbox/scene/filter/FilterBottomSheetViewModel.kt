@@ -22,6 +22,8 @@ class FilterBottomSheetViewModel @Inject constructor(
     private val _filters = MutableLiveData<List<FilterItemUiModel>>()
     val filters: LiveData<List<FilterItemUiModel>> get() = _filters
 
+    private var filterSelectionList: List<FilterItemUiModel>? = null
+
     init {
         fetchFilterList()
     }
@@ -38,6 +40,14 @@ class FilterBottomSheetViewModel @Inject constructor(
     }
 
     private fun postFilterList(filters: List<FilterItemUiModel>) {
+        filterSelectionList?.let { filterSelectionList ->
+            filterSelectionList.forEach { selectedItem ->
+                filters.find { it.id == selectedItem.id }?.apply {
+                    values = selectedItem.values
+                    selectedValues = selectedItem.selectedValues
+                }
+            }
+        }
         _filters.value = filters
     }
 
@@ -46,5 +56,9 @@ class FilterBottomSheetViewModel @Inject constructor(
         val oldItem = newFilterList.find { it.id == newItem.id }
         newFilterList.replace(old = oldItem, new = newItem)
         postFilterList(newFilterList)
+    }
+
+    fun setFilterSelectionList(list: List<FilterItemUiModel>) {
+        filterSelectionList = list
     }
 }

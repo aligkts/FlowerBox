@@ -21,6 +21,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_filter"
             android:layout_width="match_parent"
@@ -32,7 +41,7 @@
             app:adapter="@{filterAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/button_apply_filter"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_close"
             app:seperator="@{DividerItemDecoration.VERTICAL}"
             app:submitList="@{viewModel.filters}"
             tools:listitem="@layout/recyclerview_item_filter" />

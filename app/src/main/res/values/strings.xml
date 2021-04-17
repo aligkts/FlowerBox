@@ -15,6 +15,7 @@
 
     <!-- region Product List -->
     <string name="filter">Filtrele</string>
+    <string name="empty_filter_result">Aradığınız kriterlerde herhangi bir ürün bulunamamıştır.</string>
     <!-- endregion -->
 
 </resources>

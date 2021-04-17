@@ -6,7 +6,6 @@ import com.aligkts.flowerbox.databinding.FragmentFilterBottomSheetBinding
 import com.aligkts.flowerbox.internal.extension.showMultipleChoiceDialog
 import com.aligkts.flowerbox.internal.extension.showSingleChoiceDialog
 import com.aligkts.flowerbox.uimodel.FilterItemUiModel
-import com.aligkts.flowerbox.uimodel.FilterValueItemUiModel
 
 /**
  * Created by Ali Göktaş on 14,April,2021
@@ -15,24 +14,34 @@ class FilterBottomSheetFragment :
     BaseFullScreenBottomSheetFragment<FilterBottomSheetViewModel, FragmentFilterBottomSheetBinding>(),
     FilterCallback {
 
-    private var onFilterSelectionCompleted: ((List<FilterValueItemUiModel>) -> Unit)? = null
+    lateinit var onFilterSelectionCompleted: ((List<FilterItemUiModel>) -> Unit)
+
+    private var filterSelectionList: List<FilterItemUiModel>? = null
 
     override val layoutId: Int = R.layout.fragment_filter_bottom_sheet
 
     override fun initialize() {
         super.initialize()
-        binder.filterAdapter = FilterAdapter(this)
-        binder.buttonApplyFilter.setOnClickListener {
-            val currentList = binder.filterAdapter?.currentList?.toList()
-            val selectedFilters = arrayListOf<FilterValueItemUiModel>()
-            currentList?.map { it.values }?.forEach { item ->
-                item.filter { it.isSelected }.forEach { selected ->
-                    selectedFilters.add(selected)
+        filterSelectionList?.let { viewModel.setFilterSelectionList(it) }
+        setupBindings()
+    }
+
+    private fun setupBindings() {
+        with(binder) {
+            filterAdapter = FilterAdapter(this@FilterBottomSheetFragment)
+            imgClose.setOnClickListener { dismiss() }
+            buttonApplyFilter.setOnClickListener {
+                val currentList = binder.filterAdapter?.currentList?.toList()
+                val selectedFilters = arrayListOf<FilterItemUiModel>()
+                currentList?.forEach { item ->
+                    if (item.values.any { it.isSelected }) {
+                        selectedFilters.add(item)
+                    }
                 }
-            }
-            dismiss()
-            if (selectedFilters.isNotEmpty()) {
-                onFilterSelectionCompleted?.let { it.invoke(selectedFilters) }
+                dismiss()
+                if (selectedFilters.isNotEmpty()) {
+                    onFilterSelectionCompleted.invoke(selectedFilters)
+                }
             }
         }
     }
@@ -42,14 +51,23 @@ class FilterBottomSheetFragment :
         val valuesNameArray = valuesNameList.toTypedArray()
         val valuesSelectedStatusArray = filterItem.values.map { it.isSelected }.toBooleanArray()
         if (filterItem.isSingleChoice) {
+            val selectedSingleChoiceItem = filterItem.values.find { it.isSelected }
+            val selectedSingleChoiceItemIndex = filterItem.values.indexOf(selectedSingleChoiceItem)
             requireContext().showSingleChoiceDialog(
                 title = filterItem.categoryName,
                 values = valuesNameArray,
-                defaultValue = 0,
+                defaultValue = selectedSingleChoiceItemIndex,
                 buttonAction = { dialog, which ->
                     dialog.dismiss()
-                    filterItem.values[which].isSelected = true
-                    (filterItem.selectedValues as ArrayList<String>).add(valuesNameArray[which])
+                    filterItem.values.forEachIndexed { index, filterValueItem ->
+                        if (index == which) {
+                            filterValueItem.isSelected = true
+                            filterItem.selectedValues.add(valuesNameArray[index])
+                        } else {
+                            filterValueItem.isSelected = false
+                            filterItem.selectedValues.remove(valuesNameArray[index])
+                        }
+                    }
                     viewModel.replaceFilteredItem(filterItem)
                     binder.filterAdapter?.notifyDataSetChanged()
                 }
@@ -77,9 +95,13 @@ class FilterBottomSheetFragment :
     companion object {
         const val TAG = "FilterBottomSheetFragment"
 
-        fun newInstance(onFilterSelectionCompleted: ((List<FilterValueItemUiModel>) -> Unit)?): FilterBottomSheetFragment {
+        fun newInstance(
+            selectedFilters: List<FilterItemUiModel>?,
+            onFilterSelectionCompleted: ((List<FilterItemUiModel>) -> Unit)
+        ): FilterBottomSheetFragment {
             val fragment = FilterBottomSheetFragment()
             fragment.onFilterSelectionCompleted = onFilterSelectionCompleted
+            selectedFilters?.let { fragment.filterSelectionList = it }
             return fragment
         }
     }

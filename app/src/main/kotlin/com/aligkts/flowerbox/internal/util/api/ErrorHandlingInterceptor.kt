@@ -62,6 +62,6 @@ class ErrorHandlingInterceptor(
 }
 
 private data class ApiError(
-    @Json(name = "status_code") val code: Int,
-    @Json(name = "status_message") val message: String
+    @Json(name = "status_code") val code: Int?,
+    @Json(name = "status_message") val message: String?
 )

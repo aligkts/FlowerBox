@@ -4,9 +4,12 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aligkts.flowerbox.base.BaseAndroidViewModel
+import com.aligkts.flowerbox.domain.FetchFilteredProductListUseCase
 import com.aligkts.flowerbox.domain.FetchProductListUseCase
+import com.aligkts.flowerbox.internal.extension.getFilterRequestQuery
 import com.aligkts.flowerbox.internal.util.Failure
 import com.aligkts.flowerbox.internal.util.UseCase
+import com.aligkts.flowerbox.uimodel.FilterValueItemUiModel
 import com.aligkts.flowerbox.uimodel.ProductItemUiModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -17,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class ProductViewModel @Inject constructor(
     private val fetchProductListUseCase: FetchProductListUseCase,
+    private val fetchFilteredProductListUseCase: FetchFilteredProductListUseCase,
     application: Application
 ) : BaseAndroidViewModel(application) {
 
@@ -37,6 +41,22 @@ class ProductViewModel @Inject constructor(
             onUIThread {
                 dismissLoading()
                 productListResult.either(::handleFailure, ::postProductList)
+            }
+        }
+    }
+
+    fun fetchFilteredProductList(filterSelectionList: List<FilterValueItemUiModel>) {
+        showLoading()
+        bgScope.launch {
+            val filteredProductListResult =
+                fetchFilteredProductListUseCase.run(
+                    FetchFilteredProductListUseCase.Params(
+                        filterSelectionList.getFilterRequestQuery()
+                    )
+                )
+            onUIThread {
+                dismissLoading()
+                filteredProductListResult.either(::handleFailure, ::postProductList)
             }
         }
     }

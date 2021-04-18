@@ -12,4 +12,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/filterBottomSheetFragment"
+        android:name="com.aligkts.flowerbox.scene.filter.FilterBottomSheetFragment"
+        tools:layout="@layout/fragment_filter_bottom_sheet">
+
+    </fragment>
+
 </navigation>

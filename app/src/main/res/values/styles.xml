@@ -59,11 +59,6 @@
         <item name="fontFamily">@font/nunito_bold</item>
     </style>
 
-    <style name="Button.Secondary">
-        <item name="android:background">@drawable/background_secondary_button</item>
-        <item name="android:textColor">@color/vibrant_blue</item>
-    </style>
-
     <style name="TextField.ListItem" />
 
     <style name="TextField.ListItem.Product">
@@ -92,6 +87,23 @@
     <style name="TextField.ListItem.Product.CurrentPrice">
         <item name="android:layout_marginTop">@dimen/margin_large</item>
         <item name="android:textAppearance">@style/TextField.Body2</item>
+    </style>
+
+    <style name="TextField.ListItem.Filter">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginStart">@dimen/margin_filter_text</item>
+        <item name="android:layout_marginEnd">@dimen/margin_filter_text</item>
+        <item name="android:layout_marginTop">@dimen/margin_filter_text</item>
+    </style>
+
+    <style name="TextField.ListItem.Filter.Title">
+        <item name="android:textAppearance">@style/TextField.Subtitle1</item>
+    </style>
+
+    <style name="TextField.ListItem.Filter.SelectedItem">
+        <item name="android:textAppearance">@style/TextField.Body1</item>
+        <item name="android:textColor">@android:color/holo_green_dark</item>
     </style>
 
 </resources>

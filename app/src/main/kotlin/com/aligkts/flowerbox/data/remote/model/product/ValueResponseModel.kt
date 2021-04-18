@@ -10,13 +10,13 @@ data class ValueResponseModel(
     @Json(name = "filterQueryString")
     val filterQueryString: Any?,
     @Json(name = "filterQueryStringWithProductGroup")
-    val filterQueryStringWithProductGroup: String?,
+    val filterQueryStringWithProductGroup: Any?,
     @Json(name = "group")
     val group: Int,
     @Json(name = "icon")
     val icon: String?,
     @Json(name = "id")
-    val id: Int,
+    val id: Long,
     @Json(name = "link")
     val link: String,
     @Json(name = "name")

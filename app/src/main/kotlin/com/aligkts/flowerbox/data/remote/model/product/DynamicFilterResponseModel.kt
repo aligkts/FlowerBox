@@ -4,19 +4,19 @@ import com.squareup.moshi.Json
 
 data class DynamicFilterResponseModel(
     @Json(name = "clearLink")
-    val clearLink: String?,
+    val clearLink: Any?,
     @Json(name = "detailId")
-    val detailId: Int,
+    val detailId: Long,
     @Json(name = "dropdownInfo")
-    val dropdownInfo: String?,
+    val dropdownInfo: Any?,
     @Json(name = "dropdownTitle")
-    val dropdownTitle: String?,
+    val dropdownTitle: Any?,
     @Json(name = "filterBehaviour")
     val filterBehaviour: Int,
     @Json(name = "filterType")
     val filterType: Int,
     @Json(name = "id")
-    val id: Int,
+    val id: Long,
     @Json(name = "isMainCategory")
     val isMainCategory: Boolean,
     @Json(name = "isReload")
@@ -28,7 +28,7 @@ data class DynamicFilterResponseModel(
     @Json(name = "sequence")
     val sequence: Int,
     @Json(name = "urlTag")
-    val urlTag: String?,
+    val urlTag: Any?,
     @Json(name = "values")
     val values: List<ValueResponseModel>
 )

@@ -34,4 +34,8 @@
     <!--  Product  -->
     <dimen name="margin_product_text">10dp</dimen>
 
+    <!-- Filter -->
+    <dimen name="margin_filter_text">10dp</dimen>
+    <dimen name="size_arrow_icon">35dp</dimen>
+
 </resources>

@@ -28,11 +28,11 @@ data class PriceResponseModel(
     @Json(name = "showRegisterCardButton")
     val showRegisterCardButton: Boolean,
     @Json(name = "subscriptionDiscountPercentage")
-    val subscriptionDiscountPercentage: String?,
+    val subscriptionDiscountPercentage: Int?,
     @Json(name = "subscriptionPrice")
     val subscriptionPrice: Double,
     @Json(name = "tax")
-    val tax: String?,
+    val tax: Any?,
     @Json(name = "total")
     val total: Double
 )

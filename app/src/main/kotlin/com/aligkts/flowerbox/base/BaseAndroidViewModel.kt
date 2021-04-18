@@ -43,7 +43,7 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
     protected val bgScope = CoroutineScope(Dispatchers.Default + viewModelJob)
 
     protected open fun handleFailure(failure: Failure) {
-        val (message) = when (failure) {
+        var (message) = when (failure) {
             is Failure.NoConnectivityError -> Pair(
                 "",
                 getString(R.string.common_error_network_connection)
@@ -54,12 +54,6 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
                 "",
                 getString(R.string.common_error_invalid_response)
             )
-            is Failure.FormValidationError -> Pair(
-                getString(R.string.common_title_popup_form_validation),
-                failure.message
-                    ?: getString(R.string.common_error_invalid_form)
-            )
-            is Failure.IoError -> Pair("", getString(R.string.common_error_can_not_save_data))
             is Failure.UnknownError -> Pair(
                 "",
                 failure.exception.localizedMessage ?: getString(R.string.common_error_unknown)
@@ -71,7 +65,8 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
             is Failure.TimeOutError -> Pair("", getString(R.string.common_error_timeout))
             else -> Pair("", failure.message ?: failure.toString())
         }
-
+        if (message.isEmpty())
+            message = getString(R.string.common_error_unknown)
         _failurePopup.value = Event(ErrorUiModel(message = message))
     }
 

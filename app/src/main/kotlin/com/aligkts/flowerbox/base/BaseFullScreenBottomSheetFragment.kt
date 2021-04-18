@@ -18,7 +18,6 @@ abstract class BaseFullScreenBottomSheetFragment<VM : BaseAndroidViewModel, B : 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
-
         return dialog.apply {
             setOnShowListener { dialogInterface ->
                 val bottomSheetDialog = dialogInterface as BottomSheetDialog
@@ -28,8 +27,7 @@ abstract class BaseFullScreenBottomSheetFragment<VM : BaseAndroidViewModel, B : 
                 setupFullHeight(bottomSheetDialog)
                 BottomSheetBehavior.from(bottomSheet).apply {
                     state = BottomSheetBehavior.STATE_EXPANDED
-
-                    setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                    addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                         override fun onStateChanged(bottomSheet: View, newState: Int) {
                             if (newState == BottomSheetBehavior.STATE_DRAGGING) {
                                 state = BottomSheetBehavior.STATE_EXPANDED
@@ -50,9 +48,7 @@ abstract class BaseFullScreenBottomSheetFragment<VM : BaseAndroidViewModel, B : 
             bottomSheetDialog.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout
         val layoutParams = bottomSheet.layoutParams
         val windowHeight = getWindowHeight()
-        layoutParams?.let {
-            it.height = windowHeight
-        }
+        layoutParams?.let { it.height = windowHeight }
         bottomSheet.layoutParams = layoutParams
     }
 

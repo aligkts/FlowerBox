@@ -2,6 +2,7 @@ package com.aligkts.flowerbox.internal.injection.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.aligkts.flowerbox.scene.filter.FilterBottomSheetViewModel
 import com.aligkts.flowerbox.scene.main.MainViewModel
 import com.aligkts.flowerbox.scene.product.ProductViewModel
 import com.aligkts.flowerbox.scene.splash.SplashViewModel
@@ -14,6 +15,11 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FilterBottomSheetViewModel::class)
+    abstract fun bindsFilterBottomSheetViewModel(viewModel: FilterBottomSheetViewModel): ViewModel
 
     @Binds
     @IntoMap

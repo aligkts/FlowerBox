@@ -9,9 +9,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Splash">
-        <item name="colorPrimaryDark">@color/transparent</item>
-        <item name="android:background">@drawable/background_splash</item>
-    </style>
-
 </resources>

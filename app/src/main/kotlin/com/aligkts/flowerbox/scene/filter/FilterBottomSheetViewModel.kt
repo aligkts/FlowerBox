@@ -58,6 +58,18 @@ class FilterBottomSheetViewModel @Inject constructor(
         postFilterList(newFilterList)
     }
 
+    fun clearFilters() {
+        filterSelectionList = null
+        val currentFilters = _filters.value ?: emptyList()
+        currentFilters.forEach { filterItem ->
+            filterItem.values.filter { it.isSelected }.forEach {
+                filterItem.selectedValues.clear()
+                it.isSelected = false
+            }
+        }
+        postFilterList(currentFilters)
+    }
+
     fun setFilterSelectionList(list: List<FilterItemUiModel>) {
         filterSelectionList = list
     }

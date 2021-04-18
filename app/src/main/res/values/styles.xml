@@ -59,11 +59,6 @@
         <item name="fontFamily">@font/nunito_bold</item>
     </style>
 
-    <style name="Button.Secondary">
-        <item name="android:background">@drawable/background_secondary_button</item>
-        <item name="android:textColor">@color/vibrant_blue</item>
-    </style>
-
     <style name="TextField.ListItem" />
 
     <style name="TextField.ListItem.Product">

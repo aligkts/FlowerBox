@@ -41,7 +41,13 @@ class FilterBottomSheetFragment :
                 dismiss()
                 if (selectedFilters.isNotEmpty()) {
                     onFilterSelectionCompleted.invoke(selectedFilters)
+                } else {
+                    onFilterSelectionCompleted.invoke(emptyList())
                 }
+            }
+            txtClearFilter.setOnClickListener {
+                this@FilterBottomSheetFragment.viewModel.clearFilters()
+                binder.filterAdapter?.notifyDataSetChanged()
             }
         }
     }

@@ -58,7 +58,7 @@ internal class NetworkModule {
     @Provides
     @Singleton
     internal fun provideCurlInterceptor(): CurlInterceptor {
-        return CurlInterceptor(Loggable { message -> if (BuildConfig.DEBUG) println(message) })
+        return CurlInterceptor { message -> if (BuildConfig.DEBUG) println(message) }
     }
 
     @Provides

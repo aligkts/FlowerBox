@@ -4,22 +4,15 @@
     <color name="colorPrimary">@color/primary_green</color>
     <color name="colorPrimaryDark">@color/dark_green</color>
     <color name="colorAccent">@color/reddish_orange</color>
+
     <color name="reddish_orange">#ff671b</color>
-    <color name="orangey_red">#f03939</color>
-    <color name="orangey_red_light">#f05555</color>
-
-    <color name="transparent">#00000000</color>
-    <color name="transparent_20">#20000000</color>
-
     <color name="orange">#FF671B</color>
     <color name="black">#231F20</color>
     <color name="dark_grey">#768992</color>
     <color name="soft_grey">#E5E5E5</color>
-    <color name="white">#F9FBFC</color>
     <color name="primary_green">#119a38</color>
     <color name="dark_green">#0E7C2D</color>
     <color name="almost_black">#08090a</color>
-    <color name="almost_black_60">#6008090a</color>
     <color name="text_color">@color/almost_black</color>
 
 </resources>

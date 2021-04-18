@@ -1,6 +1,6 @@
 package com.aligkts.flowerbox.domain
 
-import com.aligkts.flowerbox.data.remote.model.product.FilteredProductListRequestModel
+import com.aligkts.flowerbox.data.remote.model.request.product.FilteredProductListRequestModel
 import com.aligkts.flowerbox.data.repository.ProductRepository
 import com.aligkts.flowerbox.internal.util.UseCase
 import com.aligkts.flowerbox.uimodel.ProductItemUiModel

@@ -17,11 +17,6 @@ import com.aligkts.flowerbox.base.ListAdapterItem
 import com.aligkts.flowerbox.internal.extension.loadImage
 import com.aligkts.flowerbox.internal.util.GridLayoutSpaceItemDecoration
 
-@BindingAdapter("lottieFile")
-fun setLottieFile(view: LottieAnimationView, resource: String) {
-    view.setAnimation(resource)
-}
-
 @BindingAdapter("hideIfNull")
 fun setVisible(view: View, obj: Any?) {
     view.visibility = if (obj == null) {
@@ -59,12 +54,6 @@ fun setAdapter(view: RecyclerView, adapter: BaseListAdapter<ViewDataBinding, Lis
 @BindingAdapter("seperator")
 fun setSeperator(view: RecyclerView, orientation: Int) {
     view.addItemDecoration(DividerItemDecoration(view.context, orientation))
-}
-
-@BindingAdapter("spaceItemDecoration")
-fun addSpaceItemDecoration(view: RecyclerView, @Dimension space: Float) {
-    val spaceItemDecoration = GridLayoutSpaceItemDecoration(space.toInt())
-    view.addItemDecoration(spaceItemDecoration)
 }
 
 @BindingAdapter("imageFromUrl", "placeholderRes", "errorRes", requireAll = false)

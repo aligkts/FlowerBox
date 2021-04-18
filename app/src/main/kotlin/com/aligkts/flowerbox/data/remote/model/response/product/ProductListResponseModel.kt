@@ -1,5 +1,6 @@
-package com.aligkts.flowerbox.data.remote.model.product
+package com.aligkts.flowerbox.data.remote.model.response.product
 
+import com.aligkts.flowerbox.data.remote.BaseResponseModel
 import com.aligkts.flowerbox.internal.extension.find
 import com.aligkts.flowerbox.uimodel.ProductItemUiModel
 import com.aligkts.flowerbox.uimodel.enum.DeliveryBadgeType
@@ -10,7 +11,7 @@ data class ProductListResponseModel(
     val error: ErrorResponseModel,
     @Json(name = "result")
     val result: ResultResponseModel
-) {
+) : BaseResponseModel() {
 
     fun toUiModel(): List<ProductItemUiModel> {
         return result.data.products.map { item ->

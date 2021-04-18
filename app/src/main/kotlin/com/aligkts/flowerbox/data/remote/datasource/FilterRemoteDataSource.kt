@@ -2,7 +2,7 @@ package com.aligkts.flowerbox.data.remote.datasource
 
 import com.aligkts.flowerbox.data.remote.BaseRemoteDataSource
 import com.aligkts.flowerbox.data.remote.api.ProductService
-import com.aligkts.flowerbox.data.remote.model.product.MainFilterResponseModel
+import com.aligkts.flowerbox.data.remote.model.response.product.MainFilterResponseModel
 import javax.inject.Inject
 
 /**

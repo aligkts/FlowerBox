@@ -1,5 +1,6 @@
-package com.aligkts.flowerbox.data.remote.model.product
+package com.aligkts.flowerbox.data.remote.model.response.product
 
+import com.aligkts.flowerbox.data.remote.BaseResponseModel
 import com.squareup.moshi.Json
 
 data class ErrorResponseModel(
@@ -11,4 +12,4 @@ data class ErrorResponseModel(
     val title: String?,
     @Json(name = "type")
     val type: Int
-)
+) : BaseResponseModel()

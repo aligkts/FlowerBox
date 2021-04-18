@@ -9,12 +9,13 @@ import com.aligkts.flowerbox.uimodel.FilterItemUiModel
 fun List<FilterItemUiModel>.getFilterRequestQuery(): String {
     var query = "?"
     this.forEach { filterItem ->
-        filterItem.values.filter { it.isSelected }.forEach { valueItem ->
+        val selectedValues = filterItem.values.filter { it.isSelected }
+        selectedValues.forEach { valueItem ->
             query += valueItem.group.requestFieldName.plus("=").plus(valueItem.id.toString())
-            if (filterItem.values.iterator().hasNext()) {
+            if (selectedValues.iterator().hasNext()) {
                 query += "&"
             }
         }
     }
-    return query
+    return query.removeAmpersandFromLastIndexIfExists()
 }

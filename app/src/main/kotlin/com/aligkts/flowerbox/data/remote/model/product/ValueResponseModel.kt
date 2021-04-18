@@ -8,9 +8,9 @@ data class ValueResponseModel(
     @Json(name = "detailValueId")
     val detailValueId: Int,
     @Json(name = "filterQueryString")
-    val filterQueryString: String?,
+    val filterQueryString: Any?,
     @Json(name = "filterQueryStringWithProductGroup")
-    val filterQueryStringWithProductGroup: String?,
+    val filterQueryStringWithProductGroup: Any?,
     @Json(name = "group")
     val group: Int,
     @Json(name = "icon")

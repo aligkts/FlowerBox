@@ -4,17 +4,17 @@ import com.squareup.moshi.Json
 
 data class ProductResponseModel(
     @Json(name = "adsModel")
-    val adsModel: String?,
+    val adsModel: Any?,
     @Json(name = "code")
     val code: String,
     @Json(name = "dateBasedDiscount")
-    val dateBasedDiscount: String?,
+    val dateBasedDiscount: Any?,
     @Json(name = "deliveryBadgeText")
     val deliveryBadgeText: String,
     @Json(name = "deliveryBadgeType")
     val deliveryBadgeType: Int,
     @Json(name = "deliveryChargeMessage")
-    val deliveryChargeMessage: String?,
+    val deliveryChargeMessage: Any?,
     @Json(name = "deliveryChargeText")
     val deliveryChargeText: String?,
     @Json(name = "entryId")
@@ -28,7 +28,7 @@ data class ProductResponseModel(
     @Json(name = "installment")
     val installment: Boolean,
     @Json(name = "installmentText")
-    val installmentText: String,
+    val installmentText: String?,
     @Json(name = "isDigital")
     val isDigital: Boolean,
     @Json(name = "isDiscountAvailable")
@@ -50,7 +50,7 @@ data class ProductResponseModel(
     @Json(name = "link")
     val link: String,
     @Json(name = "marketplaceBranch")
-    val marketplaceBranch: String?,
+    val marketplaceBranch: Any?,
     @Json(name = "mediumImage")
     val mediumImage: String,
     @Json(name = "mostSellestProduct")
@@ -72,7 +72,7 @@ data class ProductResponseModel(
     @Json(name = "reviewRating")
     val reviewRating: Double,
     @Json(name = "role")
-    val role: String?,
+    val role: Any?,
     @Json(name = "showPriceDroppedTagAtFavoritePage")
     val showPriceDroppedTagAtFavoritePage: Boolean,
     @Json(name = "smallImage")

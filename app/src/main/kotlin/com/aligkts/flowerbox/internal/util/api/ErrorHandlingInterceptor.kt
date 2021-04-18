@@ -34,7 +34,6 @@ class ErrorHandlingInterceptor(
         }
 
         if (response.isSuccessful) {
-
             if (response.body == null) {
                 throw Failure.EmptyResponse
             }

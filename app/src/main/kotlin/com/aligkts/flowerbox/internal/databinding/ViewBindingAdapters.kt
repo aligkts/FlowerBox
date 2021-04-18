@@ -1,32 +1,18 @@
 package com.aligkts.flowerbox.internal.databinding
 
-import android.graphics.drawable.Drawable
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
-import androidx.annotation.Dimension
+import android.widget.TextView
 import androidx.annotation.DrawableRes
-import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.aligkts.flowerbox.R
 import com.aligkts.flowerbox.base.BaseListAdapter
 import com.aligkts.flowerbox.base.ListAdapterItem
 import com.aligkts.flowerbox.internal.extension.loadImage
-import com.aligkts.flowerbox.internal.extension.setOnDrawableEndClickListener
-import com.aligkts.flowerbox.internal.util.GridLayoutSpaceItemDecoration
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-
-@BindingAdapter("lottieFile")
-fun setLottieFile(view: LottieAnimationView, resource: String) {
-    view.setAnimation(resource)
-}
 
 @BindingAdapter("hideIfNull")
 fun setVisible(view: View, obj: Any?) {
@@ -62,10 +48,9 @@ fun setAdapter(view: RecyclerView, adapter: BaseListAdapter<ViewDataBinding, Lis
     }
 }
 
-@BindingAdapter("spaceItemDecoration")
-fun addSpaceItemDecoration(view: RecyclerView, @Dimension space: Float) {
-    val spaceItemDecoration = GridLayoutSpaceItemDecoration(space.toInt())
-    view.addItemDecoration(spaceItemDecoration)
+@BindingAdapter("seperator")
+fun setSeperator(view: RecyclerView, orientation: Int) {
+    view.addItemDecoration(DividerItemDecoration(view.context, orientation))
 }
 
 @BindingAdapter("imageFromUrl", "placeholderRes", "errorRes", requireAll = false)
@@ -75,7 +60,7 @@ fun setImage(
     @DrawableRes placeholderRes: Int?,
     @DrawableRes errorRes: Int?
 ) {
-    val defaultDrawable = R.drawable.ic_flower_box_placeholder
+    val defaultDrawable = R.drawable.ic_placeholder
 
     view.loadImage(
         url,
@@ -84,49 +69,11 @@ fun setImage(
     )
 }
 
-@BindingAdapter("setClearable")
-fun setClearable(
-    view: EditText,
-    clearDrawable: Drawable
-) {
-    with(view) {
-        val updateEndDrawable: () -> Unit = {
-            val currentDrawables = compoundDrawablesRelative
-
-            setCompoundDrawablesRelativeWithIntrinsicBounds(
-                currentDrawables[0],
-                currentDrawables[1],
-                if (text.isNullOrBlank()) null else clearDrawable,
-                currentDrawables[3]
-            )
-        }
-
-        updateEndDrawable()
-
-        doAfterTextChanged {
-            updateEndDrawable()
-        }
-
-        setOnDrawableEndClickListener {
-            text = null
-        }
-    }
-}
-
-interface TextChangeCallback {
-    fun onTextChange(text: String?)
-}
-
-@BindingAdapter("onTextChangeDebounce", "debounce")
-fun setOnTextChangeDebounce(view: EditText, callback: TextChangeCallback, debounce: Long) {
-    require(debounce > 0) { "Debounce must be positive debounce: $debounce" }
-
-    var job: Job? = null
-    view.doAfterTextChanged { editable ->
-        job?.cancel()
-        job = GlobalScope.launch(Dispatchers.Main) {
-            delay(debounce)
-            callback.onTextChange(editable?.toString())
-        }
+@BindingAdapter("strikethrough")
+fun setStrikethrough(view: TextView, show: Boolean) {
+    view.paintFlags = if (show) {
+        view.paintFlags or STRIKE_THRU_TEXT_FLAG
+    } else {
+        view.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
     }
 }

@@ -19,7 +19,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.aligkts.flowerbox.BR
 import com.aligkts.flowerbox.internal.extension.observeNonNull
-import com.aligkts.flowerbox.internal.extension.showPopup
 import com.aligkts.flowerbox.internal.util.functional.lazyThreadSafetyNone
 import com.aligkts.flowerbox.navigation.NavigationCommand
 import com.aligkts.flowerbox.scene.main.MainActivity
@@ -71,10 +70,10 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         observeNavigation()
         observeFailure()
         observeSuccess()
+        observeLoadingStatus()
     }
 
     override fun onCreateView(
@@ -90,6 +89,15 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
         return binder.root
     }
 
+    private fun observeLoadingStatus() {
+        viewModel.loading.observeNonNull(viewLifecycleOwner) { isLoading ->
+            if (isLoading)
+                (requireActivity() as MainActivity).showLoading()
+            else
+                (requireActivity() as MainActivity).dismissLoading()
+        }
+    }
+
     private fun observeNavigation() {
         viewModel.navigation.observeNonNull(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { command ->
@@ -103,24 +111,14 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
             is NavigationCommand.ToDirection -> {
                 findNavController().navigate(command.directions, getExtras())
             }
-            is NavigationCommand.ToDeepLink -> {
-                (activity as? MainActivity)
-                    ?.navController
-                    ?.navigate(command.deepLink.toUri(), null, getExtras())
-            }
-            is NavigationCommand.Popup -> {
-                with(command) {
-                    context?.showPopup(model, callback)
-                }
-            }
             is NavigationCommand.Back -> findNavController().navigateUp()
         }
     }
 
     private fun observeFailure() {
         viewModel.failurePopup.observeNonNull(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { popupUiModel ->
-                context?.showPopup(popupUiModel)
+            it.getContentIfNotHandled()?.let { errorUiModel ->
+                showSnackBarMessage(errorUiModel.message)
             }
         }
     }

@@ -3,7 +3,6 @@ package com.aligkts.flowerbox.internal.injection.component
 import com.aligkts.flowerbox.internal.injection.DaggerApplication
 import com.aligkts.flowerbox.internal.injection.module.ActivitiesModule
 import com.aligkts.flowerbox.internal.injection.module.AppModule
-import com.aligkts.flowerbox.internal.injection.module.CacheModule
 import com.aligkts.flowerbox.internal.injection.module.FragmentsModule
 import com.aligkts.flowerbox.internal.injection.module.NetworkModule
 import com.aligkts.flowerbox.internal.injection.viewmodel.ViewModelModule
@@ -20,7 +19,6 @@ import javax.inject.Singleton
         FragmentsModule::class,
         AppModule::class,
         NetworkModule::class,
-        CacheModule::class,
         ViewModelModule::class
     ]
 )

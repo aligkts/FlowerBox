@@ -14,6 +14,6 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector(modules = [MainModule::class])
     internal abstract fun contributeMainActivity(): MainActivity
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector
     internal abstract fun contributeSplashActivity(): SplashActivity
 }

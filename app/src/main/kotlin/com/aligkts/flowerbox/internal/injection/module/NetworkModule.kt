@@ -5,10 +5,8 @@ import com.aligkts.flowerbox.BuildConfig
 import com.aligkts.flowerbox.data.remote.api.ProductService
 import com.aligkts.flowerbox.internal.util.NetworkHandler
 import com.aligkts.flowerbox.internal.util.api.ErrorHandlingInterceptor
-import com.aligkts.flowerbox.internal.util.api.RetryAfterInterceptor
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.moczul.ok2curl.CurlInterceptor
-import com.moczul.ok2curl.logger.Loggable
 import com.squareup.moshi.Moshi
 import dagger.Lazy
 import dagger.Module
@@ -59,7 +57,7 @@ internal class NetworkModule {
     @Provides
     @Singleton
     internal fun provideCurlInterceptor(): CurlInterceptor {
-        return CurlInterceptor(Loggable { message -> if (BuildConfig.DEBUG) println(message) })
+        return CurlInterceptor { message -> if (BuildConfig.DEBUG) println(message) }
     }
 
     @Provides
@@ -79,7 +77,6 @@ internal class NetworkModule {
             .addInterceptor(loggingInterceptor)
             .addInterceptor(curlInterceptor)
             .addInterceptor(ErrorHandlingInterceptor(NetworkHandler(context), moshi))
-            .addInterceptor(RetryAfterInterceptor())
             .cache(cache)
 
         return httpClient.build()

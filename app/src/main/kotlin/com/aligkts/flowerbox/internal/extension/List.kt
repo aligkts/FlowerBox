@@ -1,11 +1,21 @@
 package com.aligkts.flowerbox.internal.extension
 
-fun <T> List<T>?.thisOrEmptyList() = this ?: emptyList()
+import com.aligkts.flowerbox.uimodel.FilterItemUiModel
 
-/*fun List<MovieGenreEntity>.convertMovieGenres(): List<MovieGenreUiModel> = this.map {
-    MovieGenreUiModel(it.id, it.name)
+/**
+ * Created by Ali Göktaş on 16,April,2021
+ */
+
+fun List<FilterItemUiModel>.getFilterRequestQuery(): String {
+    var query = "?"
+    this.forEach { filterItem ->
+        val selectedValues = filterItem.values.filter { it.isSelected }
+        selectedValues.forEach { valueItem ->
+            query += valueItem.group.requestFieldName.plus("=").plus(valueItem.id.toString())
+            if (selectedValues.iterator().hasNext()) {
+                query += "&"
+            }
+        }
+    }
+    return query.removeAmpersandFromLastCharIfExists()
 }
-
-fun List<TvShowGenreEntity>.convertTvShowGenres(): List<TvShowGenreUiModel> = this.map {
-    TvShowGenreUiModel(it.id, it.name)
-}*/

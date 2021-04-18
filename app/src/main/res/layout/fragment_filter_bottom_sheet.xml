@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.recyclerview.widget.DividerItemDecoration" />
+
+        <variable
+            name="viewModel"
+            type="com.aligkts.flowerbox.scene.filter.FilterBottomSheetViewModel" />
+
+        <variable
+            name="filterAdapter"
+            type="com.aligkts.flowerbox.scene.filter.FilterAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_clear_filter"
+            style="@style/TextField.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/clear_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_filter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:padding="@dimen/margin_small"
+            app:adapter="@{filterAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/button_apply_filter"
+            app:layout_constraintTop_toBottomOf="@id/img_close"
+            app:seperator="@{DividerItemDecoration.VERTICAL}"
+            app:submitList="@{viewModel.filters}"
+            tools:listitem="@layout/recyclerview_item_filter" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_apply_filter"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_xxl"
+            android:text="@string/filter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_filter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

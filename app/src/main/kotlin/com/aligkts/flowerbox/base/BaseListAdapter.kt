@@ -27,7 +27,6 @@ abstract class BaseListAdapter<VB : ViewDataBinding, T : ListAdapterItem>(
             parent,
             false
         )
-
         return BaseViewHolder(binding)
     }
 

@@ -1,33 +1,21 @@
 <resources>
 
     <!-- region common -->
-    <string name="common_ok">OK</string>
-    <string name="common_cancel">Cancel</string>
+    <string name="common_ok">Tamam</string>
+    <string name="common_cancel">İptal</string>
 
-    <string name="common_error_invalid_response">Invalid server response</string>
-    <string name="common_error_invalid_form">Invalid form</string>
-    <string name="common_error_network_connection">No internet connection</string>
-    <string name="common_error_unknown_host">Server not responding</string>
-    <string name="common_error_can_not_save_data">We could not save your data</string>
-    <string name="common_error_unknown">Unknown error</string>
-    <string name="common_title_popup_form_validation" />
-    <string name="common_error_http">An error occurred please try again later \n (%1$s)</string>
-    <string name="common_error_timeout">Request timed out</string>
-    <string name="common_error_unauthorized">Only logged in users can perform this operation</string>
-
-    <string name="common_text_cast">Cast</string>
+    <string name="common_error_invalid_response">Geçersiz yanıt</string>
+    <string name="common_error_network_connection">İnternet bağlantısı yok</string>
+    <string name="common_error_unknown_host">Sunucu cevap vermiyor</string>
+    <string name="common_error_unknown">Bilinmeyen hata</string>
+    <string name="common_error_http">Bilinmeyen bir hata oluştu. Lütfen tekrar deneyiniz \n (%1$s)</string>
+    <string name="common_error_timeout">Zaman aşımı</string>
     <!-- endregion -->
 
-    <!-- region Product List -->
-
-    <!-- endregion -->
-
-    <!-- region Tv Show Detail -->
-    <string name="tv_show_detail_message_creators">Creators:</string>
-    <plurals name="tv_show_detail_message_seasons">
-        <item quantity="one">%d season</item>
-        <item quantity="other">%d seasons</item>
-    </plurals>
+    <!-- region Product List & Filter -->
+    <string name="filter">Filtrele</string>
+    <string name="clear_filter">Temizle</string>
+    <string name="empty_filter_result">Aradığınız kriterlerde herhangi bir ürün bulunamamıştır.</string>
     <!-- endregion -->
 
 </resources>

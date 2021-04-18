@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="filterItem"
+            type="com.aligkts.flowerbox.uimodel.FilterItemUiModel" />
+
+        <variable
+            name="callback"
+            type="com.aligkts.flowerbox.scene.filter.FilterCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> callback.onFilterClick(filterItem)}"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_category_name"
+            style="@style/TextField.ListItem.Filter.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{filterItem.categoryName}"
+            app:layout_constraintEnd_toStartOf="@id/img_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kategori" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_selected_value_name"
+            style="@style/TextField.ListItem.Filter.SelectedItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/img_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_category_name"
+            tools:text="Yenilebilir Çiçek"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_arrow"
+            android:layout_width="@dimen/size_arrow_icon"
+            android:layout_height="@dimen/size_arrow_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_right" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,7 +7,6 @@ import com.aligkts.flowerbox.internal.util.NetworkHandler
 import com.aligkts.flowerbox.internal.util.api.ErrorHandlingInterceptor
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.moczul.ok2curl.CurlInterceptor
-import com.moczul.ok2curl.logger.Loggable
 import com.squareup.moshi.Moshi
 import dagger.Lazy
 import dagger.Module

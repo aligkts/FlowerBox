@@ -70,7 +70,6 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         observeNavigation()
         observeFailure()
         observeSuccess()
@@ -111,11 +110,6 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
         when (command) {
             is NavigationCommand.ToDirection -> {
                 findNavController().navigate(command.directions, getExtras())
-            }
-            is NavigationCommand.ToDeepLink -> {
-                (activity as? MainActivity)
-                    ?.navController
-                    ?.navigate(command.deepLink.toUri(), null, getExtras())
             }
             is NavigationCommand.Back -> findNavController().navigateUp()
         }

@@ -19,7 +19,6 @@ android {
         versionCode ext.application.versionCode
         versionName ext.application.versionName
         applicationId ext.application.id
-        testInstrumentationRunner ext.application.testInstrumentationRunner
         vectorDrawables.useSupportLibrary true
 
         buildConfigField "String", "BASE_URL", BASE_URL_DEV
@@ -99,6 +98,4 @@ dependencies {
     kapt commonKapt
     debugImplementation commonDebug
     releaseImplementation commonRelease
-    testImplementation commonTest
-    androidTestImplementation commonInstrumentationTest
 }

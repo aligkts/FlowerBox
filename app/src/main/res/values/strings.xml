@@ -5,7 +5,6 @@
     <string name="common_cancel">İptal</string>
 
     <string name="common_error_invalid_response">Geçersiz yanıt</string>
-    <string name="common_error_invalid_form">Geçersiz form</string>
     <string name="common_error_network_connection">İnternet bağlantısı yok</string>
     <string name="common_error_unknown_host">Sunucu cevap vermiyor</string>
     <string name="common_error_unknown">Bilinmeyen hata</string>
@@ -13,7 +12,7 @@
     <string name="common_error_timeout">Zaman aşımı</string>
     <!-- endregion -->
 
-    <!-- region Product List -->
+    <!-- region Product List & Filter -->
     <string name="filter">Filtrele</string>
     <string name="clear_filter">Temizle</string>
     <string name="empty_filter_result">Aradığınız kriterlerde herhangi bir ürün bulunamamıştır.</string>

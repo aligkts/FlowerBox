@@ -1,5 +1,6 @@
-package com.aligkts.flowerbox.data.remote.model.product
+package com.aligkts.flowerbox.data.remote.model.response.product
 
+import com.aligkts.flowerbox.data.remote.BaseResponseModel
 import com.aligkts.flowerbox.internal.extension.find
 import com.aligkts.flowerbox.uimodel.FilterItemUiModel
 import com.aligkts.flowerbox.uimodel.FilterValueItemUiModel
@@ -11,7 +12,7 @@ data class MainFilterResponseModel(
     val dynamicFilter: List<DynamicFilterResponseModel>,
     @Json(name = "sort")
     val sort: List<SortResponseModel>
-) {
+) : BaseResponseModel() {
 
     fun toUiModel(): List<FilterItemUiModel> {
         return dynamicFilter.map { filterItem ->

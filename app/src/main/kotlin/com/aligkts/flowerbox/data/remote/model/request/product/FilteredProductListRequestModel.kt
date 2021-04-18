@@ -1,4 +1,4 @@
-package com.aligkts.flowerbox.data.remote.model.product
+package com.aligkts.flowerbox.data.remote.model.request.product
 
 import com.aligkts.flowerbox.data.remote.BaseRequestModel
 

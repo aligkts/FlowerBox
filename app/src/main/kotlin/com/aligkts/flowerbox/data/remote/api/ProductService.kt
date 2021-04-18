@@ -1,6 +1,6 @@
 package com.aligkts.flowerbox.data.remote.api
 
-import com.aligkts.flowerbox.data.remote.model.product.ProductListResponseModel
+import com.aligkts.flowerbox.data.remote.model.response.product.ProductListResponseModel
 import retrofit2.http.GET
 import retrofit2.http.Url
 

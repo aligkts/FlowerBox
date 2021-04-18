@@ -17,5 +17,5 @@ fun List<FilterItemUiModel>.getFilterRequestQuery(): String {
             }
         }
     }
-    return query.removeAmpersandFromLastIndexIfExists()
+    return query.removeAmpersandFromLastCharIfExists()
 }

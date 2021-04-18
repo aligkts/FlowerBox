@@ -18,7 +18,7 @@ class MainActivity : BaseBindingActivity<MainViewModel, ActivityMainBinding>() {
 
     override val layoutId get() = R.layout.activity_main
 
-    val navController: NavController by lazy { findNavController(R.id.main_host_fragment) }
+    private val navController: NavController by lazy { findNavController(R.id.main_host_fragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,6 @@ class MainActivity : BaseBindingActivity<MainViewModel, ActivityMainBinding>() {
     private fun handleNavigation(command: NavigationCommand) {
         when (command) {
             is NavigationCommand.ToDirection -> navController.navigate(command.directions)
-            is NavigationCommand.ToDeepLink -> navController.navigate(command.deepLink.toUri())
             is NavigationCommand.Back -> navController.navigateUp()
         }
     }

@@ -14,7 +14,8 @@ class SplashActivity : BaseBindingActivity<SplashViewModel, ActivitySplashBindin
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binder.viewModel = viewModel
-        binder.lifecycleOwner = this { startMainActivity() }.withDelay()
+        binder.lifecycleOwner = this
+        { startMainActivity() }.withDelay()
     }
 
     private fun startMainActivity() {

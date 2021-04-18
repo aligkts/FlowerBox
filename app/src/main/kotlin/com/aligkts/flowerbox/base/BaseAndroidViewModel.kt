@@ -86,14 +86,6 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
         _navigation.value = Event(NavigationCommand.ToDirection(directions))
     }
 
-    fun navigate(deepLink: String) {
-        _navigation.value = Event(NavigationCommand.ToDeepLink(deepLink))
-    }
-
-    fun navigate(@StringRes deepLinkRes: Int) {
-        navigate(getString(deepLinkRes))
-    }
-
     fun navigateBack() {
         _navigation.value = Event(NavigationCommand.Back)
     }

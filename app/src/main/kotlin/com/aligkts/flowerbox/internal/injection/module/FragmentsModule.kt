@@ -1,5 +1,6 @@
 package com.aligkts.flowerbox.internal.injection.module
 
+import com.aligkts.flowerbox.internal.injection.scope.FilterScope
 import com.aligkts.flowerbox.internal.injection.scope.ProductScope
 import com.aligkts.flowerbox.scene.filter.FilterBottomSheetFragment
 import com.aligkts.flowerbox.scene.filter.FilterModule
@@ -15,7 +16,7 @@ internal abstract class FragmentsModule {
     @ContributesAndroidInjector(modules = [ProductModule::class])
     abstract fun contributeProductFragment(): ProductFragment
 
-    @ProductScope
+    @FilterScope
     @ContributesAndroidInjector(modules = [FilterModule::class])
     abstract fun contributeFilterFragment(): FilterBottomSheetFragment
 }

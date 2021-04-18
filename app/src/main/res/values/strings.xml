@@ -12,7 +12,7 @@
     <string name="common_error_timeout">Zaman aşımı</string>
     <!-- endregion -->
 
-    <!-- region Product List -->
+    <!-- region Product List & Filter -->
     <string name="filter">Filtrele</string>
     <string name="clear_filter">Temizle</string>
     <string name="empty_filter_result">Aradığınız kriterlerde herhangi bir ürün bulunamamıştır.</string>

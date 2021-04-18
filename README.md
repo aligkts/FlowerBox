@@ -53,7 +53,6 @@ The pre-commit git hooks have exactly the same checks as [CircleCI](https://circ
 - **[Dagger](https://github.com/google/dagger):** Dependency injector
 - **[Coroutines](https://github.com/Kotlin/kotlinx.coroutines):** Asynchronous programming
 - **[Glide](https://github.com/bumptech/glide):** Image loading and caching
-- **[Lottie](https://github.com/airbnb/lottie-android):** JSON based animations
 - **[Retrofit](https://github.com/square/retrofit):** Type safe HTTP client
 - **[Moshi](https://github.com/square/moshi):** JSON serializer/deserializer
 

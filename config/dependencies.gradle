@@ -48,7 +48,7 @@ ext {
             kotlinn = [
                     "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$compiler.kotlin",
                     "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version.coroutines",
-                    "org.jetbrains.kotlin:kotlin-reflect:$compiler.kotlin",
+                    "org.jetbrains.kotlin:kotlin-reflect:$compiler.kotlin"
             ],
 
             androidx = [
@@ -59,17 +59,17 @@ ext {
                     "androidx.preference:preference-ktx:$version.preference",
                     "androidx.lifecycle:lifecycle-viewmodel-ktx:$version.lifecycle",
                     "androidx.lifecycle:lifecycle-livedata-ktx:$version.lifecycle",
-                    "androidx.lifecycle:lifecycle-common-java8:$version.lifecycle",
+                    "androidx.lifecycle:lifecycle-common-java8:$version.lifecycle"
             ],
 
             dagger = [
                     "com.google.dagger:dagger:$version.dagger",
-                    "com.google.dagger:dagger-android-support:$version.dagger",
+                    "com.google.dagger:dagger-android-support:$version.dagger"
             ],
 
             common = [
                     "com.github.bumptech.glide:glide:$version.glide",
-                    "com.jakewharton.timber:timber:$version.timber",
+                    "com.jakewharton.timber:timber:$version.timber"
             ],
 
             commonKapt = [
@@ -88,16 +88,16 @@ ext {
             ],
 
             material = [
-                    "com.google.android.material:material:$version.material",
+                    "com.google.android.material:material:$version.material"
             ],
 
             commonDebug = [
-                    "com.github.ChuckerTeam.Chucker:library:$version.chucker",
+                    "com.github.ChuckerTeam.Chucker:library:$version.chucker"
             ],
 
             commonRelease = [
-                    "com.github.ChuckerTeam.Chucker:library-no-op:$version.chucker",
-            ],
+                    "com.github.ChuckerTeam.Chucker:library-no-op:$version.chucker"
+            ]
     ]
 
 }
